@@ -1,0 +1,69 @@
+.deta {
+  position: fixed;
+  min-width: 53%;
+  max-height: 79%;
+  top: 50%;
+  left: 29%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: -1;
+  background-size: cover;
+  border-radius: 2rem;
+}
+
+.div {
+  backdrop-filter: blur(16 px);
+    background-color: gray;
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: -1;
+}
+.recursos{
+     position: fixed;
+    font-family: 'Roboto', sans-serif;
+    min-width: 39%;
+    max-height: 77%;
+    top: 56%;
+    left: 70%;
+    transform: translateX(-32%) translateY(-61%);
+    z-index: -1;
+    background-size:cover;
+    overflow: auto;
+    scroll-padding: 1rem;
+    overflow-y: auto;
+   
+}
+
+
+img{
+  width: 50%;
+  height: 90%;
+}
+
+.buttom{
+  position: fixed;
+  text-align: center;
+
+}
+
+.volver{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  margin-left: 55rem;
+  margin-top: 2rem;
+}
+
+.lod{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10rem;
+  margin-left: 8rem;
+  margin-top: 2rem;
+
+}

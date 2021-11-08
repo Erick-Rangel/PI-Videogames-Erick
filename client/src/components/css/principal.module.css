@@ -1,0 +1,44 @@
+.filters {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 40rem;
+  margin-left: 20rem;
+  height: 1rem;
+  margin-bottom: 5rem;
+  color: darkgoldenrod
+}
+
+.link{
+ color: darkgoldenrod;
+    text-decoration: none;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-top: 2rem;
+    font-size: 2rem;
+}
+
+.cabecera{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  font-size: 5rem;
+  color: darkgoldenrod;
+  margin-top: -1rem;
+}
+
+.search{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-left: 20%;
+  margin-top: 1%;
+}
+.cargar{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+ margin-left: 25rem;
+
+}

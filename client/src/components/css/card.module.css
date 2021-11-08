@@ -1,0 +1,22 @@
+
+
+.div {
+  height: 50vh;
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  
+  border-radius: 2rem;
+  align-items: center;
+  margin-right: 3rem;
+  float: left;
+  margin-bottom: 5rem;
+  color: darkgoldenrod;
+}
+   
+.div > img {
+  height: 50vh;
+  position: relative;
+  width: 20vw;
+  border-radius: 1rem;
+}

@@ -1,0 +1,10 @@
+.paginado {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  color:darkgoldenrod;
+  width: 50rem;
+  margin-left: 25rem;
+}

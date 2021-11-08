@@ -1,0 +1,51 @@
+.crear {
+    background-image: url("../images/mejores-programas-gratis-crear-videojuegos.jpg");
+    min-width: 100%;
+    min-height: 100%;
+    transform: translateX(-50%) translateY(-50%);
+    background-position: center;
+    background-size: contain;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+
+.cont {
+ display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    width: 200%;
+    justify-content: center;
+    margin-bottom: -15rem;
+    font-family: unset;
+    font-size: x-large;
+    color: white;
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    margin-left: 30%;
+    width: 31vh;
+    flex-direction: column;
+    align-content: center;
+}
+
+.error{
+    color: red;
+    font-size: x-large;
+}
+
+.boton{
+        display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    margin-top: 3rem;
+    margin-left: 52rem;
+}
+
+.h{
+    margin-left: 37%;
+}
