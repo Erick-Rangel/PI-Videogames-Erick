@@ -24,7 +24,13 @@ async function apiAll(){
             createdDb: false,
             rating: videojuego.rating,
             image: videojuego.background_image,
-            genres: videojuego.genres.map(genre => genre.name),
+           genres: videojuego.genres.map(genre => {
+             let result = genre.name.split(", ",2)
+             return {
+               name: result[0],
+
+              }
+            }).filter(genre => genre.name !== "")
           };
         });   
        

@@ -19,12 +19,13 @@ export const Filtros = ({handleOrder}) => {
 
 function handleOnFilterGenres(e) {
   dispatch(filterJuegoByGenre(e.target.value));
+  console.log(e.target.value)
 }
+
  function handleFilterCreated(e) {
    dispatch(filterCreated(e.target.value));
  }
 
- 
 
 
     return (
@@ -38,7 +39,7 @@ function handleOnFilterGenres(e) {
                 {genre.name}
               </option>
             ))}
-            ) console.log(typeof(genres))
+            )
           </select>
 
           <span>Videojuego</span>

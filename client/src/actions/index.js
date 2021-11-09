@@ -3,18 +3,18 @@ import axios from 'axios';
 export function getAll() {
 
   return async function(dispatch) {
-   let json = await axios.get('http://localhost:3001/videogames');
+   let json = await axios('http://localhost:3001/videogames');  
     return dispatch({
         type: 'GET_ALL',
         payload: json.data
-    })
+    });
 }
       
 }
 
 export function getGenres(){
     return async function(dispatch){
-        var info = await axios('http://localhost:3001/genre');
+        var info = await axios.get('http://localhost:3001/genre');
         return dispatch({
           type: "GET_GENRES",
           payload: info.data,
@@ -43,7 +43,7 @@ console.log(e)
 }
 
 export function filterJuegoByGenre(payload){
-    console.log(payload)
+   
     return {
         type: 'FILTER_BY_GENRE',
         payload

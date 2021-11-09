@@ -16,7 +16,6 @@ function App() {
           <Route exact path="/videogame" component={VideogameCreate} />
           <Route exact path="/home" component={PaginaPrinc} />
           <Route exact path="/:id" component={Detalle} />
-
           <Route exact path="/" component={Loading} />
         </Switch>
       </BrowserRouter>

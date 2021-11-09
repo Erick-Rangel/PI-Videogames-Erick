@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useState,useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -12,8 +12,8 @@ import style from "./css/principal.module.css"
 import { Filtros } from './filtros';
 
 
-function PaginaPrinc() {
-
+function PaginaPrinc({history}) {
+console.log(history)
   const allvideogames = useSelector((state) => state.videogame);
  const dispatch = useDispatch();
   
@@ -66,7 +66,8 @@ function PaginaPrinc() {
       >
         Cargar personajes
       </button>
-      <Searchbar />  <Filtros handleOrder={handleOrder}/>
+      <Searchbar /> 
+       <Filtros handleOrder={handleOrder}/>
       <Paginado      
         key={currentPage}
         paginado={paginado}
@@ -74,7 +75,8 @@ function PaginaPrinc() {
         allvideogames={allvideogames.length}
       />
 
-      {currentJuegos?.map(({ id, name, image, genres, rating, img }) => {      
+      {useMemo(currentJuegos?.map(({ id, name, image, genres, rating, img }) => { 
+       
         return (
           <>
             <Link to={`/${id}`}>
@@ -84,12 +86,12 @@ function PaginaPrinc() {
                 name={name}
                 image={img ? img : image}
                 rating={rating}
-                genres={genres}
+                genres={genres.map((genre) => genre.name).filter(genre => genre)}
               />
             </Link>
           </>
         );
-      })}
+      }))}
     </>
   );
 }

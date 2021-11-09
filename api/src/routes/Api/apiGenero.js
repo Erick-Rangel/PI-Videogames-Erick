@@ -18,18 +18,19 @@ const data = async ()=>{
    try {
      
      let generos = await data();
+     if(!generos){
      genres = generos.map((genero) => {
        return {
+           id: genero.id,
            name: genero.name,
        };
      });
      await Genre.bulkCreate(genres);
-   
-
+     }else{
       let generosDB = await Genre.findAll();
 
        res.json(generosDB);
-    
+     }
    } catch (error) {
      next(error);
    }

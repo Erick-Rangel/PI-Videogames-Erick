@@ -20,13 +20,10 @@ function rootReducer(state = initialState, action) {
 
       case "FILTER_BY_GENRE":
         const allVideogames = state.allVideogames;
-        const filteredVideogames = allVideogames.slice(",").filter(
-          (videogame) => videogame.genres === action.payload
-        );
-          console.log(filteredVideogames);
+        const videogame = allVideogames.filter(videogame => videogame.genre === action.payload);
         return {
           ...state,
-          videogame: filteredVideogames,
+          videogame: videogame,
         };
       case "FILTER_BY_CREATED":
         const createdFilter =
