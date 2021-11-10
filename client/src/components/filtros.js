@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect} from 'react'
 import style from "./css/principal.module.css";
  import { filterCreated, filterJuegoByGenre, getGenres } from "../actions";
 import { useDispatch, useSelector } from 'react-redux';
  
 
-export const Filtros = ({handleOrder}) => {
+export const Filtros = ({handleOrder,handleOnFilterRating}) => {
 
     const genres = useSelector((state) => state.genres); 
       const dispatch = useDispatch();
@@ -18,43 +18,47 @@ export const Filtros = ({handleOrder}) => {
     }, [dispatch]);
 
 function handleOnFilterGenres(e) {
-  dispatch(filterJuegoByGenre(e.target.value));
-  console.log(e.target.value)
+  dispatch(filterJuegoByGenre(e.target.value)); 
+  
 }
+
 
  function handleFilterCreated(e) {
    dispatch(filterCreated(e.target.value));
  }
-
-
-
+ 
+ 
+ 
+ 
     return (
-      
-        <div className={style.filters}>
-          <span>Genero</span>
+      <div className={style.filters}>
+        <span>Genero</span>
 
-          <select onChange={(e) => handleOnFilterGenres(e)}>
-            {genres.map((genre) => (
-              <option key={genre.id} value={genre.name}>
-                {genre.name}
-              </option>
-            ))}
-            )
-          </select>
+        <select onChange={(e) => handleOnFilterGenres(e)}>
+          {genres.map((genre) => (
+            <option key={genre.id} value={genre.name}>
+              {genre.name}
+            </option>
+          ))})
+        </select>
 
-          <span>Videojuego</span>
+        <span>Videojuego</span>
 
-          <select onChange={(e) => handleFilterCreated(e)}>
-            <option value="All">Todos</option>
-            <option value="api">Reales</option>
-            <option value="created">Creados</option>
-          </select>
-          <span>Ordenar</span>
-          <select onChange={handleOrder}>
-            <option value="asc">A-Z</option>
-            <option value="desc">Z-A</option>
-          </select>
-        </div>
-    
+        <select onChange={(e) => handleFilterCreated(e)}>
+          <option value="All">Todos</option>
+          <option value="api">Reales</option>
+          <option value="created">Creados</option>
+        </select>
+        <span>Ordenar</span>
+        <select onChange={handleOrder}>
+          <option value="asc">A-Z</option>
+          <option value="desc">Z-A</option>
+        </select>
+        <select onChange={handleOnFilterRating}
+        >
+          <option value="mayor">Mejor rating</option>
+          <option value="menor">Peor rating</option>
+        </select>
+      </div>
     );
 }

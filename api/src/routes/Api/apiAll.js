@@ -24,15 +24,19 @@ async function apiAll(){
             createdDb: false,
             rating: videojuego.rating,
             image: videojuego.background_image,
-           genres: videojuego.genres.map(genre => {
-             let result = genre.name.split(", ",2)
-             return {
-               name: result[0],
-
+           genres: videojuego.genres.map(genre =>{ 
+             let map = genre.name.split()
+             for( let i = 0; i < map.length; i++){
+               if(genre.name[i]) genre.name[i];
+               
+               
               }
-            }).filter(genre => genre.name !== "")
-          };
-        });   
+              
+              return map;
+            
+           })
+          }
+        })   
        
         return results;
     }catch(error){
@@ -64,25 +68,32 @@ const getAllJuego =async ()=>{
   return allJuegos;    
 }
 
-const juegoName= async (req,res) =>{
+const juegoName= async (req,res,next) =>{
 
   const {name} = req.query;
-
   
-
-  
+  try{
   const juegoTotal = await getAllJuego();
   if(name){ 
+  console.log(juegoTotal)
   
-    const juegos = juegoTotal.filter(juego => juego.name.toLowerCase().includes(name.toLowerCase()))
+    const juegosFilter = []
+    juegoTotal.map(juego => {
+      if(juego.name.toLowerCase().includes(name.toLowerCase())) juegosFilter.push(juego)
+     
+    })
+
+    return res.send(juegosFilter)
+
   
-    
-    juegos.length ? res.send(juegos) : res.json([`No se encontraron juegos con el nombre ${name}`]);
      
    
   } else {
     res.status(200).send(juegoTotal);
-  } 
+  } }
+  catch(err){
+    next(err)
+  }
 }
 
 module.exports = {juegoName}

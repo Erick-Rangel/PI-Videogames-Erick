@@ -11,10 +11,11 @@ export default function Searchbar() {
     const handleInputChange=(e)=>{
         e.preventDefault()
         setName(e.target.value)
+
     }
 
     const handleSubmit=(e)=>{
-        e.preventDefault()
+       
         dispatch(getName(name))
         setName("")
     }
@@ -25,8 +26,9 @@ export default function Searchbar() {
           type="text"
           value={name}
           placeholder="Search"
-          onSubmit={(e) => handleSubmit(e)}
           onChange={(e) => handleInputChange(e)}
+          onKeyPress={(e) => {
+          if (e.key === "Enter") handleSubmit()}}
         />
 
         <button type="submit" onClick={handleSubmit}>
