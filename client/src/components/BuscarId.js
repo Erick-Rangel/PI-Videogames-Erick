@@ -25,7 +25,7 @@ export const BuscarId = React.memo(({ setJuegosPorPage, currentJuegos }) => {
         );
       })
     :
-    <h1>No se encontraron los juegos</h1>
+    <h1 className={styles.h}>No se encontraron los juegos</h1>
     }
     </div>
   );

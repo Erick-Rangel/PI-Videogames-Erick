@@ -1,20 +1,16 @@
 .filters {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  width: 40rem;
-  margin-left: 20rem;
-  height: 1rem;
-  margin-bottom: 5rem;
-  color: darkgoldenrod;
-  position: fixed;
-  min-width: 100%;
-  min-height: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  z-index: -1;
+    display: flex;
+    flex-direction: row;
+    color: darkgoldenrod;
+    position: relative;
+    max-width: 11%;
+    height: 4vh;
+    left: 40%;
+    transform: translateX(-50%) translateY(-50%);
+    justify-content: center;
+    font-size: x-large;
 }
+
 
 .link{
  color: darkgoldenrod;
@@ -44,9 +40,9 @@
   margin-top: 1%;
 }
 .cargar{
-  display: flex;
-  align-content: center;
-  justify-content: center;
- margin-left: 25rem;
-
+ display: flex;
+    align-content: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 3rem;
 }

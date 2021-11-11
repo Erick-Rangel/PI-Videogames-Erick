@@ -17,9 +17,12 @@ const apiID = async (id) => {
       name: juego.name,
       description: juego.description.replace(/<[^>]*>?/g, ""),
       genres: juego.genres
-        .map((genre) => genre.name)
-        .reduce((acc, genre) => acc + "," + genre)
-        .split(" , "),
+        .map(genre =>{
+              return {
+            
+                name: genre.name
+              }
+            }),
 
       released: juego.released,
       rating: juego.rating,
@@ -39,7 +42,14 @@ async function getApiID(req, res, next) {
     else {
       try {
         const juego = await Videogame.findByPk(req.params.id, {
-          includes: { model: Genre, through: { attributes: ["name"] } },
+         include: {
+      model: Genre,
+      attributes: ["name"],
+      through: {
+        attributes: []
+      }
+    } ,
+
         });
         if (juego) return res.json(juego);
         res.status(404).json({ error: "Id no encontrado" });

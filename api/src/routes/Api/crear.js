@@ -29,18 +29,12 @@ try{
             
       let generoDb= await Genre.findAll({
         where: {
-          name: {
-            [Op.in]: genres,
-          },
+          name: genres
         },  
 
       
       });
-      let generos = generoDb.map(genero => genero.id);
-      
-      
-        
-        game.addgenero(generos); 
+           game.addGenre(generoDb); 
         
         
         res.send({"Juego creado": game});

@@ -1,8 +1,10 @@
 import React, { useEffect} from 'react'
 import style from "./css/principal.module.css";
- import { filterCreated, filterJuegoByGenre, getGenres } from "../actions";
+ import { filterCreated, filterJuegoByGenre, getAll, getGenres } from "../actions";
 import { useDispatch, useSelector } from 'react-redux';
- 
+import Searchbar from './Searchbar';
+import { Link } from 'react-router-dom';
+
 
 export const Filtros = ({handleOrder,handleOnFilterRating}) => {
 
@@ -16,6 +18,12 @@ export const Filtros = ({handleOrder,handleOnFilterRating}) => {
     useEffect(() => {
       dispatch(getGenres());
     }, [dispatch]);
+
+    function handleClick(e) {
+      e.preventDefault();
+      dispatch(getAll());
+    }
+
 
 function handleOnFilterGenres(e) {
   dispatch(filterJuegoByGenre(e.target.value)); 
@@ -32,18 +40,34 @@ function handleOnFilterGenres(e) {
  
     return (
       <div className={style.filters}>
-        <span>Genero</span>
+        
 
+        <Link to="/videogame" className={style.link}>
+          Crear Videojuego
+        </Link>
+
+        <button
+          className={style.cargar}
+          onClick={(e) => {
+            handleClick(e);
+          }}
+        >
+          Cargar personajes
+        </button>
+
+        <Searchbar />
+
+        <span>Genero</span>
         <select onChange={(e) => handleOnFilterGenres(e)}>
           {genres.map((genre) => (
             <option key={genre.id} value={genre.name}>
               {genre.name}
             </option>
-          ))})
+          ))}
+          )
         </select>
 
         <span>Videojuego</span>
-
         <select onChange={(e) => handleFilterCreated(e)}>
           <option value="All">Todos</option>
           <option value="api">Reales</option>
@@ -54,8 +78,8 @@ function handleOnFilterGenres(e) {
           <option value="asc">A-Z</option>
           <option value="desc">Z-A</option>
         </select>
-        <select onChange={handleOnFilterRating}
-        >
+        <span>Rating</span>
+        <select onChange={handleOnFilterRating}>
           <option value="mayor">Mejor rating</option>
           <option value="menor">Peor rating</option>
         </select>

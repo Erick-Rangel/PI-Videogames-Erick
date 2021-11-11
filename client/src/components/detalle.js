@@ -31,7 +31,8 @@ let {id} = useParams();
             </div>
             <div className={styles.recursos}>
               <h1>Nombre: {state.name}</h1>
-              <h4>Genero: </h4> {state.genres ? state.genres : state.genre}
+              <h4>Genero: </h4>{" "}
+              {state.genres.map((genre) => genre.name).join(", ")}
               <h4>Descripcion: </h4> {state.description}
               <h4>Fecha de lanzamiento:</h4>{" "}
               {state.released ? state.released : state.fecha}

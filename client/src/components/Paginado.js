@@ -8,11 +8,13 @@ const PageNumbers =[];
         PageNumbers.push(i);
     }
   return (
-    <nav >
+    <nav>
       <ul className={styles.paginado}>
         {PageNumbers.map((number) => (
           <li key={number} className="page-item">
-            <a onClick={() => paginado(number)}>{number}</a>
+            <a onClick={() => paginado(number)}>
+              {number}
+            </a>
           </li>
         ))}
       </ul>

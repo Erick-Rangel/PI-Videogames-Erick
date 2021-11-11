@@ -24,25 +24,20 @@ async function apiAll(){
             createdDb: false,
             rating: videojuego.rating,
             image: videojuego.background_image,
-           genres: videojuego.genres.map(genre =>{ 
-             let map = genre.name.split()
-             for( let i = 0; i < map.length; i++){
-               if(genre.name[i]) genre.name[i];
-               
-               
-              }
-              
-              return map;
+           genres: videojuego.genres.map(genre =>{
+              return {
             
-           })
-          }
-        })   
-       
+                name: genre.name
+              }
+            })          
+          }            
+           })     
         return results;
     }catch(error){
         console.log(error);
     }
-}
+  }
+  
 
 
 const getDbInfo = async() =>{
@@ -51,6 +46,9 @@ const getDbInfo = async() =>{
     include: {
       model: Genre,
       attributes: ["name"],
+      through: {
+        attributes: []
+      }
     } ,
 
 
@@ -65,7 +63,16 @@ const getAllJuego =async ()=>{
   let allJuegos = juegos.concat(juegosDb); 
 
   
-  return allJuegos;    
+  return allJuegos.map(juego => {
+    return {
+      id: juego.id,
+      name: juego.name,
+      createdDb: juego.createdDb,
+      rating: juego.rating,
+      image: juego.image,
+      genres: juego.genres.map(genre => genre.name.split(", "))
+      }
+  })
 }
 
 const juegoName= async (req,res,next) =>{
@@ -75,7 +82,7 @@ const juegoName= async (req,res,next) =>{
   try{
   const juegoTotal = await getAllJuego();
   if(name){ 
-  console.log(juegoTotal)
+ 
   
     const juegosFilter = []
     juegoTotal.map(juego => {

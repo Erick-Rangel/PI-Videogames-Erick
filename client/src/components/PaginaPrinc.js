@@ -1,16 +1,13 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import {  filterJuegoByName, getAll,filterJuegoByRating} from '../actions';
 import Paginado from "./Paginado";
-import Searchbar from './Searchbar';
 import styles from "./css/loading.module.css"
-import video from "./images/fondoPP.mp4"  
-import style from "./css/principal.module.css"
+import video from "./images/fondoPP.mp4" 
 import { Filtros } from './filtros';
 import { BuscarId } from './BuscarId';
-
+import style from "./css/principal.module.css";
 
 function PaginaPrinc() {
 
@@ -30,11 +27,7 @@ function PaginaPrinc() {
   }, [dispatch]);
   
 
-  function handleClick(e) {
-    e.preventDefault();
-    dispatch(getAll());
-  }
-
+  
 
  const paginado = (pageNumber) => {
    setCurrentPage(pageNumber);
@@ -59,27 +52,15 @@ setOrden(`Ordenado ${e.target.value}`)
     <>
       <h1 className={style.cabecera}>Videojuegos Henry</h1>
 
-      <Link to="/videogame" className={style.link}>
-        Crear Videojuego
-      </Link>
-
       <video className={styles.video} src={video} autoPlay loop></video>
 
-      <button
-        className={style.cargar}
-        onClick={(e) => {
-          handleClick(e);
-        }}
-      >
-        Cargar personajes
-      </button>
-
-      <Searchbar />
-
-      <Filtros handleOrder={handleOrder} handleOnFilterRating={handleOnFilterRating} />
+      <Filtros
+        handleOrder={handleOrder}
+        handleOnFilterRating={handleOnFilterRating}
+      />
 
       <Paginado
-      /*   key={currentPage} */
+        /*   key={currentPage} */
         paginado={paginado}
         juegosPorPage={juegosPorPage}
         allvideogames={allvideogames.length}

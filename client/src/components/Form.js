@@ -60,18 +60,16 @@ export default function VideogameCreate({history}) {
       
     }
 
-    /* function handleDelete(e){
-      e.preventDefault()
+     function handleDelete(e){
+      
       setVideogame({
         ...videogame,
         videogame: videogame.genres.map(genre => genre !== e.target.value)
       })
-    } */
+    }  
     
   function HandleSubmi (e) {
     e.preventDefault()
-
-
     dispatch(postVideogame(videogame))
     alert("Videojuego Creado")
     setVideogame({
@@ -84,11 +82,10 @@ export default function VideogameCreate({history}) {
       rating: ''
     })
     history.push('/home')
-  
-
-  }
+    }
 
   function handleSelect(e){
+    console.log(e.target.value)
     setVideogame({
       ...videogame,
       genres: [...videogame.genres, e.target.value]
@@ -108,9 +105,9 @@ export default function VideogameCreate({history}) {
         <button className={styles.boton}>Volver</button>
       </Link>
       <h1 className={styles.h}>Crea tu Videojuego</h1>
-      <form onSubmit={(e) => HandleSubmi(e)} className={styles.form} >
+      <form onSubmit={(e) => HandleSubmi(e)} className={styles.form}>
         <div className={styles.cont}>
-          <label>Nombre:</label>
+          <label>Nombre*:</label>
           <input
             type="text"
             value={videogame.name}
@@ -119,16 +116,18 @@ export default function VideogameCreate({history}) {
           />
           {errors.name && <p className={styles.error}>{errors.name}</p>}
 
-          <label>Descripcion:</label>
+          <label>Descripcion*:</label>
           <input
             type="text"
             value={videogame.description}
             name="description"
             onChange={handleChange}
           />
-          {errors.description && <p  className={styles.error}>{errors.description}</p>}
+          {errors.description && (
+            <p className={styles.error}>{errors.description}</p>
+          )}
 
-          <label>Fecha:</label>
+          <label>Fecha*:</label>
           <input
             type="date"
             value={videogame.fecha}
@@ -137,9 +136,10 @@ export default function VideogameCreate({history}) {
           />
           {errors.fecha && <p className={styles.error}>{errors.fecha}</p>}
 
-          <label>Rating:</label>
+          <label>Rating*:</label>
           <input
             type="number"
+            step="any"
             value={videogame.rating}
             name="rating"
             onChange={handleChange}
@@ -154,7 +154,11 @@ export default function VideogameCreate({history}) {
           />
 
           <label>Genero:</label>
-          <select value={videogame.genres} name="genero" onChange={handleSelect}>
+          <select
+            value={videogame.genres}
+            name="genres"
+            onChange={(e) => handleSelect(e)}
+          >
             {genres.map((genre) => (
               <option key={genre.id} value={genre.name}>
                 {genre.name}
@@ -167,11 +171,17 @@ export default function VideogameCreate({history}) {
             name="plataforma"
             onChange={handlePlatforms}
           >
-            <option value="PC">PC</option>  
+            <option value="PC">PC</option>
+            <option value="PS5">PS5</option>
             <option value="PS4">PS4</option>
-            <option value="XBOX">XBOX</option>
-            <option value="SWITCH">SWITCH</option>
-            
+            <option value="Xbox One">Xbox One</option>
+            <option value="Xbox Series S/X">Xbox Series S/X</option>
+            <option value="Nintendo Switch">Nintendo Switch</option>
+            <option value="Androind">Androind</option>
+            <option value="IOS">IOS</option>
+            <option value="Nintendo 3DS">Nintendo 3DS</option>
+            <option value="Nintendo Wii U">Nintendo Wii U</option>
+            <option value="Xbox 360">Xbox 360</option>
           </select>
           <ul>
             <li>{videogame.genres.map((e) => e + ", ")}</li>
@@ -179,22 +189,31 @@ export default function VideogameCreate({history}) {
           <ul>
             <li>{videogame.platforms.map((e) => e + " ,")}</li>
           </ul>
-          {
-            errors.name || errors.description || errors.fecha || errors.rating ?  
-            <button  type="submit" disabled>Crear Videojuego</button> :
-            <button  type="submit">Crear Videojuego</button>
-          }
-
-        
+          <p>* Campos obligatorios</p>
+          {errors.name ||
+          !videogame.name ||
+          errors.description ||
+          errors.fecha ||
+          errors.rating ? (
+            <button type="submit" disabled>
+              Crear Videojuego
+            </button>
+          ) : (
+            <button type="submit">Crear Videojuego</button>
+          )}
         </div>
       </form>
 
-      {/*   {videogame.genres.map((e) => (
+      {videogame.genres.map((e) => (
         <div key={e.id}>
-              <p>{e.genres.map}</p>   
-        <button onClick={()=>handleDelete(e)}>X</button>
-    </div>
-       ) )}  */}
+          <p>
+            {e.genres?.map((e) => (
+              <li key={e.id}>{e.name}</li>
+            ))}
+          </p>
+          <button onClick={() => handleDelete(e)}>X</button>
+        </div>
+      ))}
     </div>
   );
           
